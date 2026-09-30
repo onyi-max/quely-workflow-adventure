@@ -1,0 +1,51 @@
+/* Ported verbatim from reference/prototype.html. Files are imported in order in app/layout.tsx; do not reorder. */
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#E9E3F0; --bg2:#F5F2F8; --surface:#FFFFFF; --ink:#1C1814; --text:#1C1814; --body:#4A433D; --muted:#8C857E;
+  --dot:rgba(28,24,20,.13); --purple:#9585E6; --deep:#5B2BB5; --amber:#F4B942; --amber2:#FFF1C9; --red:#D9433A; --green:#2E9E5B;
+  --blue:#FFFFFF; --grid:rgba(91,43,181,.12); --wire:rgba(91,43,181,.5);
+  /* Font families come from next/font (app/fonts.ts); fallbacks match the prototype. */
+  --head:var(--font-inter-tight),var(--font-inter),-apple-system,'Segoe UI',Arial,sans-serif;
+  --sans:var(--font-inter),-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:var(--font-courier-prime),'Courier New',Courier,monospace;
+  --hand:var(--font-caveat),'Comic Sans MS','Segoe Print',cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#17141D;--bg2:#211D29;--surface:#2A2533;--ink:#EDE7F6;--text:#F3EFF8;--body:#C9C1D6;--muted:#9990A8;--dot:rgba(237,231,246,.10);--amber2:#3A3120;--grid:rgba(149,133,230,.16);--wire:rgba(185,170,245,.55)}
+}
+:root[data-theme="dark"]{--bg:#17141D;--bg2:#211D29;--surface:#2A2533;--ink:#EDE7F6;--text:#F3EFF8;--body:#C9C1D6;--muted:#9990A8;--dot:rgba(237,231,246,.10);--amber2:#3A3120;--grid:rgba(149,133,230,.16);--wire:rgba(185,170,245,.55)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--sans);
+  background-image:radial-gradient(var(--dot) 1.3px,transparent 1.6px);background-size:30px 30px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 24px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}
+.top img{height:34px}
+.dark-logo{display:none}
+.mono{font-family:var(--mono)}
+.kick{font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.14em;color:var(--deep)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .kick{color:#B9AAF5}}
+:root[data-theme="dark"] .kick{color:#B9AAF5}
+.h1{font-family:var(--head);font-weight:700;letter-spacing:-.04em;word-spacing:.1em;line-height:1.08;margin:0;font-size:clamp(34px,5.2vw,58px)}
+.h2{font-family:var(--head);font-weight:700;letter-spacing:-.035em;word-spacing:.08em;line-height:1.08;margin:0;font-size:clamp(28px,4.2vw,46px)}
+.hl{background:var(--purple);color:#1C1814;padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.lead{font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--body);margin:14px 0 0;max-width:680px}
+.card{background:var(--surface);border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--purple);color:#1C1814;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+  padding:14px 26px;font-family:var(--head);font-weight:700;font-size:19px;letter-spacing:-.01em;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:6px 6px 0 var(--ink)}
+.btn.ghost{background:var(--surface);color:var(--text)}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 12px;border:3px solid var(--ink);border-radius:999px;background:var(--surface);font-family:var(--mono);font-weight:700;font-size:15px;white-space:nowrap;color:var(--text)}
+.chip::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--purple);flex:none}
+.hand{font-family:var(--hand);font-weight:700;color:var(--deep);line-height:1}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hand{color:#B9AAF5}}
+:root[data-theme="dark"] .hand{color:#B9AAF5}
+svg.i *{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hidden{display:none!important}
+

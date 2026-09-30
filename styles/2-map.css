@@ -1,0 +1,39 @@
+/* Map. Ported verbatim from the prototype. */
+/* ---------- MAP ---------- */
+#map .intro{max-width:860px;margin:0 auto;text-align:center}
+#map .intro .lead{margin-left:auto;margin-right:auto}
+#map .progress{justify-content:center}
+.progress{display:flex;align-items:center;gap:12px;margin-top:22px;font-family:var(--mono);font-weight:700;font-size:15px}
+.pbar{display:flex;gap:6px}.pbar i{width:36px;height:10px;border:2px solid var(--ink);background:var(--surface)}.pbar i.on{background:var(--purple)}
+.mapbox{position:relative;margin-top:34px;height:620px}
+.mapbox svg.links{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.link{fill:none;stroke:var(--wire);stroke-width:3;stroke-dasharray:10 9;transition:stroke .3s}
+.link.lit{stroke:var(--deep);stroke-dasharray:none;stroke-width:4}
+.link.hover{stroke:var(--deep)}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:260px;padding:18px;text-align:center}
+.hub img{height:30px;display:block;margin:0 auto 8px}
+.hub .mono{font-size:13px;letter-spacing:.02em;line-height:1.35;color:var(--muted);font-weight:700}
+.hub .ring{position:absolute;inset:-18px;border:2px dashed var(--wire);border-radius:50%;animation:spin 40s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.node{position:absolute;width:290px;text-align:left;padding:18px 20px;transition:transform .15s,box-shadow .15s}
+.node:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--ink)}
+.node .role{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--muted)}
+.node .t{font-family:var(--head);font-weight:700;font-size:25px;letter-spacing:-.03em;line-height:1.1;margin:8px 0 12px}
+.node .who{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600}
+.av{width:36px;height:36px;border-radius:50%;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:800;font-size:14px;color:#1C1814;flex:none}
+.node .state{position:absolute;right:14px;top:14px;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.08em;border:2px solid var(--ink);padding:2px 8px;background:var(--bg2)}
+.node.done .state{background:var(--green);color:#fff;border-color:var(--ink)}
+
+#n-eng{left:0;top:380px}#n-pm{right:0;top:380px}#n-des{left:50%;top:0;transform:translateX(-50%)}
+#n-des:hover{transform:translate(calc(-50% - 3px),-3px)}
+.unlock{margin-top:34px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;border:3px dashed var(--ink);background:color-mix(in srgb,var(--surface) 50%,transparent)}
+.unlock b{font-family:var(--head);font-size:20px;letter-spacing:-.02em}
+.unlock .lock{width:44px;height:44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;background:var(--surface)}
+@media (max-width:820px){
+  .mapbox{height:auto;display:flex;flex-direction:column;gap:18px}
+  .mapbox svg.links,.hub .ring{display:none}
+  .hub,.node,#n-des,#n-eng,#n-pm{position:relative;left:auto;right:auto;top:auto;transform:none;width:100%}
+  #n-des:hover{transform:translate(-3px,-3px)}
+  .hub{order:-1}
+}
+

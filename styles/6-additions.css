@@ -1,0 +1,19 @@
+/* Additions for the Next.js build. Not in the prototype. */
+
+/* Links styled as the prototype's buttons. */
+a.back,a.btn{text-decoration:none}
+a.back{color:inherit}
+
+/* A step restored with Back, or a Quely screen carried over from the previous step,
+   shows its settled state without replaying entrance animations. */
+.settled .qrow,.settled .orbq,.settled .orba,.settled .qdcard.new2,.settled .added{animation:none}
+.meter.strip.settled,.meter.strip.settled .overtag{animation:none}
+
+/* Finale: links to the three paths for visitors who haven't explored them all. */
+.finlinks{margin-top:34px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:18px 22px;border:3px dashed var(--ink);background:color-mix(in srgb,var(--surface) 50%,transparent)}
+.finlinks b{font-family:var(--head);font-size:20px;letter-spacing:-.02em;margin-right:auto}
+.finlinks .btn{font-size:16px;padding:10px 18px}
+
+/* Placeholder for paths not rebuilt yet. */
+.soon{padding:28px 30px;max-width:640px}
+.soon p{color:var(--body);font-size:17px;line-height:1.5}
