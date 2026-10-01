@@ -29,7 +29,7 @@ Inline styling inside copy uses a few tags: `<hl>…</hl>` purple highlight, `<b
 
 ## Tracking
 
-Set `NEXT_PUBLIC_MIXPANEL_TOKEN` (see `.env.example`) in Vercel's project settings. Until it's set, tracking is a no-op (events are logged to the browser console in development).
+No analytics tool is connected. The events below are wired up in `lib/analytics.ts` and only logged to the browser console in development; connect a tool by sending the payload from `track()`.
 
 Events, each with `path` (plus `company`/`rep` when present):
 
