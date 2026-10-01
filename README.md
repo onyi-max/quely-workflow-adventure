@@ -10,8 +10,8 @@ Built with Next.js (App Router). The original prototype is kept at [`reference/p
 |---|---|
 | `/` | The map |
 | `/engineering` | AJ picks up a task |
-| `/design` | Miracle hands off design *(coming next)* |
-| `/product` | Aditi keeps the team aligned *(coming next)* |
+| `/design` | Miracle hands off design to engineering |
+| `/product` | Aditi keeps the team aligned |
 | `/full-picture` | The finale. Always open; first-time visitors also get links to the three paths. |
 
 Add `?company=Acme&rep=jordan` to any link and both values are attached to every tracking event for the rest of the browser session.
@@ -21,7 +21,7 @@ Add `?company=Acme&rep=jordan` to any link and both values are attached to every
 All copy lives in `content/`, one file per area. Edit the strings; no component changes needed.
 
 - `content/map.ts`: map page, workflow cards, page titles and link-preview text
-- `content/engineering.ts`: every scene, message, tab, Orbit answer, and the results page for the engineering path
+- `content/engineering.ts`, `content/design.ts`, `content/product.ts`: every scene, message, Orbit answer, and the results page for each path
 - `content/results.ts`: shared results copy, the finale, and **the outbound links** (`links.bookDemo`; `links.interactiveDemo` is still a placeholder)
 - `content/shared.ts`: fixed text inside the Quely mockup (sidebar, composer placeholder, etc.)
 
@@ -48,8 +48,10 @@ components/
   map/          map intro, workflow map, unlock bar
   path/         PathRunner (step history + Back), StepFrame (header, stage, bottom bar),
                 CoachMark, ContextCostMeter
-  quely/        Quely UI mockup: app frame, sidebar, task card, threads, Orbit, Schedule Meeting
-  oldway/       Slack pile, ticket, tool tabs, banners
+  quely/        Quely UI mockup: app frame, sidebar, task card, threads, Orbit, Schedule Meeting,
+                document section and doc view
+  oldway/       Slack pile, ticket, tool tabs, banners, handoff package, X-ray slider,
+                system map, standup call, DM windows
   results/      results page pieces, finale
 scenes/<path>/  one component per step, plus the path's step list
 lib/            progress (localStorage), analytics, motion helpers

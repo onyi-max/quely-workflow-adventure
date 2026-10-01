@@ -110,6 +110,7 @@ export function ThreadsPanel({
   onAskOrbit,
   pulse,
   label,
+  listId,
   children,
   composer,
 }: {
@@ -119,9 +120,19 @@ export function ThreadsPanel({
   pulse?: boolean;
   /** Small mono label above the threads (e.g. "DESIGN DISCUSSION ON THIS TASK"). */
   label?: string;
+  /** Wrap the threads and `children` in a container with this id (as the prototype does in some paths). */
+  listId?: string;
   children?: ReactNode;
   composer?: ReactNode;
 }) {
+  const list = (
+    <>
+      {threads.map((m, i) => (
+        <Thread key={i} m={m} resolveLabel={resolveLabel} />
+      ))}
+      {children}
+    </>
+  );
   return (
     <>
       <div className="qrhead">
@@ -133,10 +144,7 @@ export function ThreadsPanel({
         ))}
       </div>
       {label ? <div className="mono dlbl">{label}</div> : null}
-      {threads.map((m, i) => (
-        <Thread key={i} m={m} resolveLabel={resolveLabel} />
-      ))}
-      {children}
+      {listId ? <div id={listId}>{list}</div> : list}
       {composer ?? <Composer />}
     </>
   );

@@ -30,6 +30,13 @@ export const quelyChrome = {
   justNow: "just now",
   typing: (name: string) => `${name} is typing`,
   askAnother: "Ask another question",
+  docs: {
+    heading: "Document",
+    lastEdited: "Last edited ▾",
+    search: "Search documents…",
+    import: "Import",
+    new: "New",
+  },
 };
 
 export const pathChrome = {

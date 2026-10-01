@@ -8,10 +8,14 @@ import { CoachMark, type CoachSpec } from "./CoachMark";
 
 export const StageContext = createContext<RefObject<HTMLDivElement | null> | null>(null);
 
-/** Provided by the path runner: whether this step shows Back, and what Back does. */
-export const StepNavContext = createContext<{ showBack: boolean; back: () => void }>({
+/**
+ * Provided by the path runner: whether this step shows Back, what Back does, and whether
+ * the step is being restored by Back (its stage then renders settled, without entrance animations).
+ */
+export const StepNavContext = createContext<{ showBack: boolean; back: () => void; restored: boolean }>({
   showBack: false,
   back: () => {},
+  restored: false,
 });
 
 export type Header = { kicker: string; title: string; line?: string };
@@ -87,12 +91,14 @@ export function StepFrame({
   children: ReactNode;
 }) {
   const stageRef = useRef<HTMLDivElement>(null);
+  const { restored } = useContext(StepNavContext);
   const { key: coachKey, ...coachSpec } = coach ?? { target: "", title: "" };
+  const stageCls = ["ajstage", restored ? "settled" : "", stageClassName ?? ""].filter(Boolean).join(" ");
   return (
     <StageContext.Provider value={stageRef}>
       <SceneHeader {...header} />
       {meter}
-      <div className={"ajstage" + (stageClassName ? " " + stageClassName : "")} id="ajStage" ref={stageRef}>
+      <div className={stageCls} id="ajStage" ref={stageRef}>
         {children}
         {coach ? <CoachMark key={coachKey ?? coachSpec.target} {...coachSpec} /> : null}
       </div>

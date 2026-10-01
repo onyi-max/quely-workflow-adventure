@@ -35,7 +35,6 @@ export function OrbitMiss({ save, next, restored }: StepProps<{ phase: Phase }>)
           ? { ask: c.doneAsk, strong: true, button: { label: c.doneButton, onClick: next } }
           : { ask: c.checking }
       }
-      stageClassName={restored ? "settled" : undefined}
     >
       <BlockerBanner instant />
       <QuelyApp

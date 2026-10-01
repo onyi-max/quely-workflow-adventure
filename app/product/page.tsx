@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { meta } from "@/content/map";
-import { ComingSoon } from "@/components/path/ComingSoon";
+import { ProductPath } from "@/scenes/product";
 
 export const metadata: Metadata = {
   title: meta.product.title,
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ComingSoon id="product" />;
+  return <ProductPath />;
 }

@@ -139,7 +139,7 @@ export function PathRunner({
           results
         ) : (
           <div className="aj">
-            <StepNavContext.Provider value={{ showBack: idx > 0, back }}>
+            <StepNavContext.Provider value={{ showBack: idx > 0, back, restored: nav.restored }}>
               <Comp
                 key={nav.n}
                 saved={nav.restored ? saved.current[idx] : undefined}

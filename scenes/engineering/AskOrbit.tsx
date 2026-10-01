@@ -72,7 +72,6 @@ export function AskOrbit({ saved, save, next, restored }: StepProps<S>) {
     <StepFrame
       header={{ kicker: c.kicker, title: c.title, line: c.line }}
       foot={foot}
-      stageClassName={restored ? "settled" : undefined}
       coach={
         st.view === "home"
           ? {

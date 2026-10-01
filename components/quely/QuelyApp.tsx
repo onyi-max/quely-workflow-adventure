@@ -102,14 +102,16 @@ export function TaskCard({ task }: { task: TaskConfig }) {
 
 /**
  * The Quely app frame: sidebar, main column, right panel.
- * `enter` plays the scale-in and attachment pop (first time Quely appears in a path);
- * otherwise it renders settled, as if it had stayed on screen from the previous step.
+ * `enter` plays the scale-in (when Quely first appears in a step, as the prototype does).
+ * `carried` means it stayed on screen from the previous step, so attachments don't pop in
+ * again; it defaults to `!enter`.
  */
 export function QuelyApp({
   task,
   main,
   right,
   enter = false,
+  carried = !enter,
   rightRef,
   rightClassName,
 }: {
@@ -118,13 +120,14 @@ export function QuelyApp({
   main?: ReactNode;
   right: ReactNode;
   enter?: boolean;
+  carried?: boolean;
   rightRef?: Ref<HTMLElement>;
   rightClassName?: string;
 }) {
   const shown = useEntered(!enter);
   const c = quelyChrome;
   return (
-    <div className={"qapp" + (shown ? " in" : "") + (enter ? "" : " settled")} id="qapp">
+    <div className={"qapp" + (shown ? " in" : "") + (carried ? " carried" : "")} id="qapp">
       <Sidebar spaces={task.spaces} active={task.activeSpace} />
       <main className="qmain">
         <div className="qtop">
