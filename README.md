@@ -22,7 +22,7 @@ All copy lives in `content/`, one file per area. Edit the strings; no component 
 
 - `content/map.ts`: map page, workflow cards, page titles and link-preview text
 - `content/engineering.ts`: every scene, message, tab, Orbit answer, and the results page for the engineering path
-- `content/results.ts`: shared results copy, the finale, and **the outbound links** (`links.bookDemo`, `links.interactiveDemo`, currently placeholders)
+- `content/results.ts`: shared results copy, the finale, and **the outbound links** (`links.bookDemo`; `links.interactiveDemo` is still a placeholder)
 - `content/shared.ts`: fixed text inside the Quely mockup (sidebar, composer placeholder, etc.)
 
 Inline styling inside copy uses a few tags: `<hl>…</hl>` purple highlight, `<b>…</b>` bold, `<mention>…</mention>` @mention chip.

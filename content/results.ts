@@ -4,8 +4,8 @@
  */
 
 export const links = {
-  // TODO: replace with the real booking link.
-  bookDemo: "#book-a-demo",
+  bookDemo:
+    "https://meetings.hubspot.com/admin3094/quely?uuid=04dd54ad-5cba-4e7a-b8e7-b2bc892a0288&utm_source=website&utm_medium=howweusequelyinteractivepage",
   // TODO: replace with the interactive demo link.
   interactiveDemo: "#demo",
 };
