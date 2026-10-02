@@ -24,8 +24,8 @@ export const product = {
   // ---- Scene 1: standup, the usual way
   standup: {
     kicker: "SCENE 1 · STANDUP, THE USUAL WAY",
-    title: "Standup surfaces a blocker. It doesn’t resolve it.",
-    line: "You’re Aditi, the PM. Your team meets for 30 minutes, several times a week.",
+    title: "The team uncovers a blocker during standup.",
+    line: "You’re Aditi, the PM. Click through to see what it takes to resolve this blocker after standup.",
     running: "Standup is running…",
     oldTag: "THE USUAL WAY",
     callLabel: "STANDUP · 30 MIN · 5 PEOPLE",
