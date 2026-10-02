@@ -22,6 +22,8 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [question, setQuestion] = useState("");
+  // The first name from the last accepted submission, for the thank-you headline.
+  const [sentName, setSentName] = useState("");
   const firstRef = useRef<HTMLInputElement>(null);
 
   // Every open starts blank: no leftover answers or error, so a previous submission can't be resent.
@@ -66,6 +68,8 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
       setError(q.failed);
       return;
     }
+    // Only reached once the destination accepted it; a failure keeps the form and shows the error.
+    setSentName(fn);
     setDone(true);
     setFirstName("");
     setEmail("");
@@ -142,14 +146,15 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
           </div>
           <div id="qmdone" className={done ? undefined : "hidden"}>
             <div className="kick">{q.doneKicker}</div>
-            <h3 className="h2" style={{ fontSize: 28, marginTop: 8 }}>
-              {q.doneTitle}
+            <h3 className="h2" id="qmthx" style={{ fontSize: 28, marginTop: 8 }}>
+              {q.doneTitle(sentName)}
             </h3>
             <p className="lead" style={{ fontSize: 16, marginTop: 8 }}>
               {q.doneLead}
             </p>
-            <button className="btn ghost" id="qmclose" type="button" style={{ marginTop: 14 }} onClick={close}>
-              {q.close}
+            {/* Closes the form; the visitor carries on from where they were. */}
+            <button className="btn" id="qmclose" type="button" style={{ marginTop: 14 }} onClick={close}>
+              {q.keepExploring}
             </button>
           </div>
         </div>

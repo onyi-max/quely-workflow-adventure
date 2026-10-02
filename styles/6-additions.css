@@ -11,6 +11,28 @@ a.back{color:inherit}
 .qapp.carried .qrow{animation:none}
 .meter.strip.settled,.meter.strip.settled .overtag{animation:none}
 
+/* Tab hunt hint on narrow screens: wrap as one line of text instead of squeezed side-by-side
+   pieces (the last word was being pushed under the stage border). */
+@media (max-width:900px){.tabhint{display:block}.tabhint .dotp{display:inline-block;vertical-align:-1px;margin-right:8px}}
+
+/* Design scene 5 on phones: the system map stacks, so drop the desktop offsets set on each node
+   (otherwise the bottom nodes slide 300px down over the text beside the map). */
+@media (max-width:620px){.sys .sn{left:auto!important;right:auto!important;top:auto!important}}
+
+/* Product scene 1 on narrow screens: let the standup call grow with its captions instead of
+   squeezing them under the summary box. */
+@media (max-width:900px){.callgrid.pcall{position:relative;inset:auto}.callgrid.pcall>*{flex-shrink:0}}
+
+/* Results table: the prototype's older ≤900px rule (80px columns) overrode the new sizes.
+   150px columns down to 700px, then 96px with a 14px value font. */
+@media (max-width:900px){.cmp{grid-template-columns:minmax(0,1fr) 150px 150px;gap:14px}}
+@media (max-width:700px){.cmp{grid-template-columns:minmax(0,1fr) 96px 96px;gap:8px}.cmp b{font-size:14px}}
+/* Phones: not enough room for a label column, so each label sits above its two values. */
+@media (max-width:480px){.cmp{grid-template-columns:1fr 1fr;row-gap:2px}.cmp>span{grid-column:1/-1}.cmp.head>span{display:none}}
+
+/* Orbit's question box: keep typed text clear of the send button (it's absolutely positioned). */
+.qask:has(.qsend) small{padding-right:40px}
+
 /* Finale: links to the three paths for visitors who haven't explored them all. */
 .finlinks{margin-top:34px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:18px 22px;border:3px dashed var(--ink);background:color-mix(in srgb,var(--surface) 50%,transparent)}
 .finlinks b{font-family:var(--head);font-size:20px;letter-spacing:-.02em;margin-right:auto}

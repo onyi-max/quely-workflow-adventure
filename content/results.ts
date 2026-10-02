@@ -39,9 +39,10 @@ export const questions = {
   failed: "Something went wrong sending your question. Please try again.",
   send: "Send question",
   sending: "Sending…",
-  doneKicker: "THANKS",
-  doneTitle: "We’ve got your question.",
-  doneLead: "We’ll reply to your email soon.",
+  doneKicker: "QUESTION SENT",
+  doneTitle: (firstName: string) => `Thanks, ${firstName}. We’ve got your question.`,
+  doneLead: "We’ll reply to your email within one business day.",
+  keepExploring: "Keep exploring",
   close: "Close",
 };
 
