@@ -78,7 +78,7 @@ export const product = {
     consequences: [
       { title: "Aditi is the link", text: "She carries the outcome from one conversation into the next." },
       { title: "Kofi gets her summary, not the discussion", text: "So his new questions go back through her." },
-      { title: "None of it is on the task", text: "The decision sits in two private DMs." },
+      { title: "None of it is on the task", text: "The decision is in two different DMs." },
     ],
     doneAsk: "That’s the usual way.",
     doneButton: "See how Aditi handles this in Quely",
