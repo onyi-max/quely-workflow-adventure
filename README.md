@@ -60,7 +60,7 @@ styles/         the prototype's CSS, ported verbatim and split in order (don't r
 
 Each step gets `saved`/`save`/`restored` from `PathRunner`, so Back restores the previous step exactly as the visitor left it, meter included. Progress is stored in `localStorage` under `quely-paths-v2`, the same key as the prototype.
 
-Fonts (Inter Tight, Inter, Courier Prime, Caveat) are self-hosted via `next/font/local` from `app/fonts/`, using the same files Google Fonts serves for the prototype. Logos and the Orbit mascot are in `public/img/`.
+Fonts (Inter Tight, Inter, Courier Prime, Caveat) are self-hosted via `next/font/local` from `app/fonts/`, using the same files Google Fonts serves for the prototype. Logos and the Orbit mascot are in `public/img/`. The favicon and home-screen icons (`app/favicon.ico`, `app/icon.png`, `app/apple-icon.png`) are the Quely mark cropped from the supplied logo.
 
 ## Develop
 
