@@ -29,12 +29,12 @@ Inline styling inside copy uses a few tags: `<hl>…</hl>` purple highlight, `<b
 
 ## Questions form
 
-"Ask a question" (header, results pages) and "Have more questions about Quely?" (finale) open a pop-up asking for a work email and a question. Where submissions go is one setting, `questionsForm.target` in `content/results.ts`:
+"Ask a question" (header, results pages) and "Have more questions about Quely?" (finale) open a pop-up asking for a first name, work email, and question (all required). Where submissions go is one setting, `questionsForm.target` in `content/results.ts`:
 
-- `""` (current): nothing is sent; the visitor still sees the thank-you
-- `"hubspot:<portalId>/<formGuid>"`: a HubSpot form (set `fields` to the form's property names, e.g. `email` and `message`)
+- `""`: nothing is sent; the visitor still sees the thank-you
+- `"hubspot:<portalId>/<formGuid>"` (current: Quely's HubSpot form): set `fields` to the form's property names (now `firstname`, `email`, `message`)
 - a Google Form's `.../formResponse` URL (set `fields` to its `entry.123456` ids)
-- any other URL, which receives a JSON POST of `{ email, question, page }`
+- any other URL, which receives a JSON POST of `{ firstName, email, question, page }`
 
 ## Tracking
 

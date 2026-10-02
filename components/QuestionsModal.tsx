@@ -19,9 +19,10 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [question, setQuestion] = useState("");
-  const emailRef = useRef<HTMLInputElement>(null);
+  const firstRef = useRef<HTMLInputElement>(null);
 
   const open = useCallback(() => {
     setDone(false);
@@ -31,7 +32,7 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
   const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
-    if (isOpen && !done) emailRef.current?.focus();
+    if (isOpen && !done) firstRef.current?.focus();
   }, [isOpen, done]);
 
   useEffect(() => {
@@ -43,21 +44,23 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const submit = async () => {
+    const fn = firstName.trim();
     const em = email.trim();
     const qu = question.trim();
-    if (!EMAIL.test(em) || !qu) {
+    if (!fn || !EMAIL.test(em) || !qu) {
       setError(q.missing);
       return;
     }
     setError(null);
     setSending(true);
-    const result = await sendQuestion(em, qu);
+    const result = await sendQuestion(fn, em, qu);
     setSending(false);
     if (result === "failed") {
       setError(q.failed);
       return;
     }
     setDone(true);
+    setFirstName("");
     setEmail("");
     setQuestion("");
   };
@@ -88,11 +91,25 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
               {q.lead}
             </p>
             <label className="qml">
+              {q.firstNameLabel}
+              <input
+                ref={firstRef}
+                type="text"
+                id="qmf"
+                autoComplete="given-name"
+                required
+                placeholder={q.firstNamePlaceholder}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </label>
+            <label className="qml">
               {q.emailLabel}
               <input
-                ref={emailRef}
                 type="email"
                 id="qme"
+                autoComplete="email"
+                required
                 placeholder={q.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -102,6 +119,7 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
               {q.questionLabel}
               <textarea
                 id="qmq"
+                required
                 rows={4}
                 placeholder={q.questionPlaceholder}
                 value={question}

@@ -13,13 +13,15 @@ export const links = {
  *   ""                                   nothing is sent; the visitor still sees the thank-you
  *   "hubspot:<portalId>/<formGuid>"      a HubSpot form (the likely choice)
  *   a Google Form's ".../formResponse" URL
- *   any other URL                        receives a JSON POST: { email, question, page }
+ *   any other URL                        receives a JSON POST: { firstName, email, question, page }
  * `fields` are the field names the destination expects: HubSpot property names, or a
  * Google Form's "entry.123456" ids. A plain URL ignores them.
  */
 export const questionsForm = {
-  target: "",
-  fields: { email: "email", question: "message" },
+  // Quely's HubSpot form (portal 23869879, region na1).
+  target: "hubspot:23869879/305ac348-510b-44e7-830d-2502eb1c3fa1",
+  // HubSpot property names. Check "message" matches the question field in the HubSpot form editor.
+  fields: { firstName: "firstname", email: "email", question: "message" },
 };
 
 /** The "Have more questions?" pop-up. */
@@ -27,11 +29,13 @@ export const questions = {
   kicker: "ASK US ANYTHING",
   title: "Have more questions about Quely?",
   lead: "Send us your question and we’ll get back to you by email.",
+  firstNameLabel: "First name",
+  firstNamePlaceholder: "Your first name",
   emailLabel: "Work email",
   emailPlaceholder: "you@company.com",
   questionLabel: "Your question",
   questionPlaceholder: "What would you like to know?",
-  missing: "Add your email and a question so we can get back to you.",
+  missing: "Add your first name, email, and question so we can get back to you.",
   failed: "Something went wrong sending your question. Please try again.",
   send: "Send question",
   sending: "Sending…",
