@@ -51,8 +51,8 @@ export const product = {
   // ---- Scene 2: after standup, the usual way
   after: {
     kicker: "SCENE 2 · AFTER STANDUP, THE USUAL WAY",
-    title: "After standup, the follow-up work starts.",
-    line: "The issue needs the designer first, then the engineer. Aditi ends up as the link between the two.",
+    title: "After standup, the follow-up work begins.",
+    line: "The issue needs the designer first, then the engineer. A call would mean finding time on two calendars for a quick decision, so Aditi does what most PMs do: she messages each of them.",
     oldTag: "THE USUAL WAY",
     label: "AFTER STANDUP",
     relay: "Aditi carries it over",
