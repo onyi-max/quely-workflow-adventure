@@ -11,6 +11,8 @@ export type SendResult = "sent" | "skipped" | "failed";
 export async function sendQuestion(firstName: string, email: string, question: string): Promise<SendResult> {
   const { target, fields } = questionsForm;
   const page = typeof window !== "undefined" ? window.location.href : "";
+  // Never send an incomplete question, whatever the caller does.
+  if (!firstName.trim() || !email.trim() || !question.trim()) return "failed";
   if (!target) return "skipped";
 
   try {

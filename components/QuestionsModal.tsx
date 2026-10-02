@@ -24,9 +24,14 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
   const [question, setQuestion] = useState("");
   const firstRef = useRef<HTMLInputElement>(null);
 
+  // Every open starts blank: no leftover answers or error, so a previous submission can't be resent.
   const open = useCallback(() => {
-    setDone(false);
+    setFirstName("");
+    setEmail("");
+    setQuestion("");
     setError(null);
+    setSending(false);
+    setDone(false);
     setOpen(true);
   }, []);
   const close = useCallback(() => setOpen(false), []);
@@ -44,9 +49,11 @@ export function QuestionsProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const submit = async () => {
+    if (sending) return;
     const fn = firstName.trim();
     const em = email.trim();
     const qu = question.trim();
+    // All three are required, and the email has to look like an email.
     if (!fn || !EMAIL.test(em) || !qu) {
       setError(q.missing);
       return;
