@@ -10,12 +10,14 @@ import { useProgress } from "@/lib/progress";
 import { IMG, PATH_IDS } from "@/lib/paths";
 import { rich } from "@/components/ui/Rich";
 import { ArrowLeft, ArrowRight } from "@/components/ui/icons";
+import { useQuestions } from "@/components/QuestionsModal";
 
 const PIECES = 6; // three cards, the connector, the hub, the copy block
 
 /** The full picture: the three workflows converging on one Space. Always open. */
 export function Finale() {
   const { count } = useProgress();
+  const { open: openQuestions } = useQuestions();
   const [shown, setShown] = useState(0);
 
   useScript(async (wait) => {
@@ -67,16 +69,17 @@ export function Finale() {
           >
             {finale.bookDemo}
           </a>
-          <a
+          <button
             className="btn"
             id="demo"
-            href={links.interactiveDemo}
-            target="_blank"
-            rel="noopener"
-            onClick={() => track("cta_clicked", "full-picture", { cta: "interactive_demo" })}
+            type="button"
+            onClick={() => {
+              track("cta_clicked", "full-picture", { cta: "ask_question", from: "finale" });
+              openQuestions();
+            }}
           >
-            {finale.interactiveDemo} <ArrowRight />
-          </a>
+            {finale.askQuestion} <ArrowRight />
+          </button>
         </div>
       </div>
       {count < 3 ? (

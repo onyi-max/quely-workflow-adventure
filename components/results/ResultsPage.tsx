@@ -10,6 +10,7 @@ import { PATH_IDS, type PathId } from "@/lib/paths";
 import { rich } from "@/components/ui/Rich";
 import { ArrowRight, MedalIcon } from "@/components/ui/icons";
 import { QAvatar } from "@/components/ui/Avatar";
+import { useQuestions } from "@/components/QuestionsModal";
 
 export type Row = { label: string; usual: number | string; ours: number | string; worse?: boolean };
 
@@ -86,6 +87,7 @@ export function QuoteCard({
 
 /** Keep exploring + Talk to us. */
 export function CtaCards({ pathId, count, nextId }: { pathId: PathId; count: number; nextId: PathId }) {
+  const { open: openQuestions } = useQuestions();
   const all = count === 3;
   const n = results.next;
   return (
@@ -107,16 +109,29 @@ export function CtaCards({ pathId, count, nextId }: { pathId: PathId; count: num
         <div className="kick">{results.talk.kicker}</div>
         <b>{results.talk.title}</b>
         <span>{results.talk.line}</span>
-        <a
-          className="btn ghost"
-          id="book"
-          href={links.bookDemo}
-          target="_blank"
-          rel="noopener"
-          onClick={() => track("cta_clicked", pathId, { cta: "book_demo" })}
-        >
-          {results.talk.button} <ArrowRight />
-        </a>
+        <div className="ctabtns">
+          <a
+            className="btn ghost"
+            id="book"
+            href={links.bookDemo}
+            target="_blank"
+            rel="noopener"
+            onClick={() => track("cta_clicked", pathId, { cta: "book_demo" })}
+          >
+            {results.talk.button} <ArrowRight />
+          </a>
+          <button
+            className="linkq"
+            id="askq"
+            type="button"
+            onClick={() => {
+              track("cta_clicked", pathId, { cta: "ask_question", from: "results" });
+              openQuestions();
+            }}
+          >
+            {results.talk.ask}
+          </button>
+        </div>
       </div>
     </div>
   );

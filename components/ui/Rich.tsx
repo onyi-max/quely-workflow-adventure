@@ -6,9 +6,10 @@ import { Fragment, type ReactNode } from "react";
  *   <b>…</b>             bold
  *   <mention>…</mention> @mention chip
  *   <em>…</em>           italic
+ *   <mark>…</mark>       yellow highlight (something that got lost along the way)
  * Tags don't nest.
  */
-const TAG = /<(hl|b|mention|em)>([\s\S]*?)<\/\1>/g;
+const TAG = /<(hl|b|mention|em|mark)>([\s\S]*?)<\/\1>/g;
 
 export function rich(text: string): ReactNode {
   const out: ReactNode[] = [];
@@ -22,6 +23,7 @@ export function rich(text: string): ReactNode {
     if (m[1] === "hl") out.push(<span key={key} className="hl">{inner}</span>);
     else if (m[1] === "b") out.push(<b key={key}>{inner}</b>);
     else if (m[1] === "mention") out.push(<b key={key} className="mention">{inner}</b>);
+    else if (m[1] === "mark") out.push(<mark key={key} className="lost">{inner}</mark>);
     else out.push(<em key={key}>{inner}</em>);
     last = i + m[0].length;
   }

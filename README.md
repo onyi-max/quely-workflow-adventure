@@ -22,10 +22,19 @@ All copy lives in `content/`, one file per area. Edit the strings; no component 
 
 - `content/map.ts`: map page, workflow cards, page titles and link-preview text
 - `content/engineering.ts`, `content/design.ts`, `content/product.ts`: every scene, message, Orbit answer, and the results page for each path
-- `content/results.ts`: shared results copy, the finale, and **the outbound links** (`links.bookDemo`; `links.interactiveDemo` is still a placeholder)
-- `content/shared.ts`: fixed text inside the Quely mockup (sidebar, composer placeholder, etc.)
+- `content/results.ts`: shared results copy, the finale, the questions pop-up, **the booking link** (`links.bookDemo`), and **where questions go** (`questionsForm`, see below)
+- `content/shared.ts`: the header links and the fixed text inside the Quely mockup (sidebar, composer placeholder, etc.)
 
-Inline styling inside copy uses a few tags: `<hl>…</hl>` purple highlight, `<b>…</b>` bold, `<mention>…</mention>` @mention chip.
+Inline styling inside copy uses a few tags: `<hl>…</hl>` purple highlight, `<b>…</b>` bold, `<mention>…</mention>` @mention chip, `<mark>…</mark>` yellow highlight.
+
+## Questions form
+
+"Ask a question" (header, results pages) and "Have more questions about Quely?" (finale) open a pop-up asking for a work email and a question. Where submissions go is one setting, `questionsForm.target` in `content/results.ts`:
+
+- `""` (current): nothing is sent; the visitor still sees the thank-you
+- `"hubspot:<portalId>/<formGuid>"`: a HubSpot form (set `fields` to the form's property names, e.g. `email` and `message`)
+- a Google Form's `.../formResponse` URL (set `fields` to its `entry.123456` ids)
+- any other URL, which receives a JSON POST of `{ email, question, page }`
 
 ## Tracking
 
@@ -37,7 +46,7 @@ Events, each with `path` (plus `company`/`rep` when present):
 - `scene_viewed`: `scene` (1-based), `step` (step ID), once per scene number per run
 - `step_back`: `from`, `to`, `scene`
 - `path_completed`
-- `cta_clicked`: `cta` = `book_demo` | `next_workflow` | `interactive_demo`
+- `cta_clicked`: `cta` = `book_demo` | `next_workflow` | `ask_question` (plus `from`: header, results or finale, where relevant)
 
 ## Structure
 

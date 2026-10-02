@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { fontFamilyVars, fontVariables } from "./fonts";
-import { map, meta } from "@/content/map";
-import { IMG } from "@/lib/paths";
+import { meta } from "@/content/map";
+import { QuestionsProvider } from "@/components/QuestionsModal";
+import { TopBar } from "@/components/TopBar";
 import "@/styles/1-base.css";
 import "@/styles/2-map.css";
 import "@/styles/3-path.css";
@@ -37,13 +38,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={fontVariables} style={fontFamilyVars}>
       <body>
-        <div className="wrap">
-          <div className="top">
-            <img src={IMG.logo} alt="Quely" />
-            <span className="kick">{map.kicker}</span>
+        <QuestionsProvider>
+          <div className="wrap">
+            <TopBar />
+            {children}
           </div>
-          {children}
-        </div>
+        </QuestionsProvider>
       </body>
     </html>
   );

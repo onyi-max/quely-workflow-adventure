@@ -15,7 +15,6 @@ export function After({ next, restored }: StepProps) {
     >
       <DmWindows
         oldTag={c.oldTag}
-        label={c.label}
         relay={c.relay}
         dms={c.dms.map((d) => ({
           label: d.label,

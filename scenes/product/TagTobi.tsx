@@ -4,16 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import type { StepProps } from "@/components/path/PathRunner";
 import { StepFrame, type Foot } from "@/components/path/StepFrame";
 import { QuelyApp } from "@/components/quely/QuelyApp";
-import { Composer, DecisionNote, Thread, ThreadsPanel, TypingDots } from "@/components/quely/ThreadsPanel";
+import { Composer, DecisionNote, Thread, TypingDots } from "@/components/quely/ThreadsPanel";
 import { useScript } from "@/lib/motion";
-import { E, msg, people, TASK } from "./common";
+import { E, msg, people, TASK, UpdatesPanel } from "./common";
 
 type Phase = "idle" | "typing" | "ready" | "replying" | "done";
 type S = { phase: Phase; replies: number; typingWho: keyof typeof people | null };
 
-/** Scene 3: the same blocker in Quely; Aditi brings the designer into the task's thread. */
-export function InQuely({ save, next, restored }: StepProps<S>) {
-  const c = E.inQuely;
+/** Scene 3, step 3: Aditi tags Tobi on the unit; Tobi and Kofi sort it out in the thread. */
+export function TagTobi({ save, next, restored }: StepProps<S>) {
+  const c = E.tag;
   const full = c.mention + c.message;
   const boldLen = c.mention.length; // the prototype bolds "@Tobi" while typing
   const [st, setSt] = useState<S>(
@@ -27,7 +27,7 @@ export function InQuely({ save, next, restored }: StepProps<S>) {
 
   // Aditi types her message.
   useScript(async (wait) => {
-    await wait(700);
+    await wait(500);
     setSt((s) => ({ ...s, phase: "typing" }));
     for (let i = 1; i <= full.length; i++) {
       setTyped(i);
@@ -50,7 +50,7 @@ export function InQuely({ save, next, restored }: StepProps<S>) {
 
   useEffect(() => {
     const r = rightRef.current;
-    if (r) r.scrollTop = r.scrollHeight;
+    if (r && (st.phase === "replying" || st.phase === "done")) r.scrollTop = r.scrollHeight;
   }, [st]);
 
   const send = () => {
@@ -70,20 +70,15 @@ export function InQuely({ save, next, restored }: StepProps<S>) {
 
   return (
     <StepFrame
-      header={{ kicker: c.kicker, title: c.title, line: c.line }}
+      header={{ kicker: E.scene3Kicker, title: c.title, line: c.line }}
       foot={foot}
-      coach={st.phase === "ready" ? { target: ".qcompose .qsend", title: c.coach.title, text: c.coach.text, place: "above" } : null}
+      coach={st.phase === "ready" ? { target: ".qcompose .qsend", title: c.coach.title, text: c.coach.text, place: "below" } : null}
     >
       <QuelyApp
         task={TASK}
-        enter={!restored}
         rightRef={rightRef}
         right={
-          <ThreadsPanel
-            threads={[msg(c.update.who, c.update.time, c.update.text)]}
-            pulse={false}
-            label={c.threadLabel}
-            listId="pth"
+          <UpdatesPanel
             composer={
               typing ? (
                 <Composer
@@ -107,7 +102,7 @@ export function InQuely({ save, next, restored }: StepProps<S>) {
             ))}
             {st.typingWho ? <TypingDots person={people[st.typingWho]} /> : null}
             {st.phase === "done" ? <DecisionNote label={c.note.label} text={c.note.text} instant={restored} /> : null}
-          </ThreadsPanel>
+          </UpdatesPanel>
         }
       />
     </StepFrame>

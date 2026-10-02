@@ -39,6 +39,12 @@ export const quelyChrome = {
   },
 };
 
+/** Top bar on every page. */
+export const header = {
+  ask: "Ask a question",
+  book: "Book a demo",
+};
+
 export const pathChrome = {
   backToMap: "Back to the map",
   back: "Back",

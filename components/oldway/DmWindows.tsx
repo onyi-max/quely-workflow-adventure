@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef } from "react";
 import { QAvatar, type Person } from "@/components/ui/Avatar";
+import { rich } from "@/components/ui/Rich";
 import { prefersReducedMotion } from "@/lib/motion";
 
 export type DmMessage = { person: Person; time: string; text: string };
@@ -20,7 +21,7 @@ export function ChatWindow({ title, messages }: { title: string; messages: DmMes
               <QAvatar person={m.person} />
               <div>
                 <b>{m.person.name}</b> <small>{m.time}</small>
-                <p>{m.text}</p>
+                <p>{rich(m.text)}</p>
               </div>
             </div>
           ))}
@@ -52,14 +53,12 @@ export function ConsequenceCards({ items }: { items: { title: string; text: stri
  */
 export function DmWindows({
   oldTag,
-  label,
   relay,
   dms,
   consequences,
   instant,
 }: {
   oldTag: string;
-  label: string;
   relay: string;
   dms: { label: string; title: string; messages: DmMessage[] }[];
   consequences: { title: string; text: string }[];
@@ -79,10 +78,9 @@ export function DmWindows({
   }, [instant]);
 
   return (
-    <div className="dmwin show" ref={ref}>
+    <div className="dmwin show pafterwin" ref={ref}>
       <div className="chead">
         <span className="oldtag">{oldTag}</span>
-        <span className="kick">{label}</span>
       </div>
       <div className="pafter">
         <div className="convos">

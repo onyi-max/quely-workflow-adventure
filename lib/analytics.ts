@@ -9,7 +9,7 @@
 
 export type EventName = "path_started" | "scene_viewed" | "step_back" | "path_completed" | "cta_clicked";
 
-export type Cta = "book_demo" | "next_workflow" | "interactive_demo";
+export type Cta = "book_demo" | "next_workflow" | "ask_question";
 
 const ATTR_KEY = "quely-attribution";
 

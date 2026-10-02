@@ -33,6 +33,45 @@ export function OrbitAskBox() {
   );
 }
 
+/**
+ * Orbit's Actions bar plus a question box with a send button. While `typed` is set, the
+ * box shows the text being typed with a caret; `ready` lights the send button.
+ */
+export function OrbitComposeBox({
+  actions,
+  typed,
+  ready,
+  onSend,
+}: {
+  actions: number;
+  typed?: string | null;
+  ready?: boolean;
+  onSend?: () => void;
+}) {
+  const typing = typed !== undefined && typed !== null;
+  return (
+    <>
+      <OrbitActions count={actions} />
+      <div className={"qask" + (typing ? " typing" : "")} id="oask">
+        <span>{quelyChrome.addTool}</span>
+        <small id="oin">
+          {typing ? (
+            <>
+              {typed}
+              <i className="caret" />
+            </>
+          ) : (
+            quelyChrome.askPlaceholder
+          )}
+        </small>
+        <button className={"qsend" + (ready ? " ready" : "")} id="osend" aria-label="Send" onClick={ready ? onSend : undefined}>
+          ➤
+        </button>
+      </div>
+    </>
+  );
+}
+
 export type Prompt = { label: string; done?: boolean; id?: string };
 
 /** Orbit home: mascot, greeting, a list of prompt buttons. */

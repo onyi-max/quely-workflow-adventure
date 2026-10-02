@@ -4,7 +4,6 @@
 import type { PathId } from "@/lib/paths";
 
 export const map = {
-  kicker: "HOW TEAMS USE QUELY",
   title: "See how product and engineering teams use Quely in their <hl>day-to-day work.</hl>",
   lead: "Pick a workflow to see how a designer, engineer, and product manager use Quely in their work.",
   progress: (n: number) => `${n} of 3 workflows explored`,
